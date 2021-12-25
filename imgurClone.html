@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="./igmurlogoicon.png" type="image/x-icon">
+        <title>Imgur Clone</title>
+        <link rel="stylesheet" href="./imgurStyle.css">
+    </head>
+
+    <body>
+        <div class="firsthalf">
+            <nav>
+                <div class="navbar">
+                    <div class="navChild">
+                        <div class="imgurLogo">
+                            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.downdetector.com%2Fstatic%2Fuploads%2Flogo%2Fimgur-logo.png&f=1&nofb=1"
+                                alt="">
+                        </div>
+                        <div>
+                            <a href="#" class="">
+                                <div class="upload">
+                                    <div>+ &nbsp; <b>New Post</b></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- search bar -->
+                    <div class="navChild">
+                        <div>
+                            <input oninput="debauncing();" id="search-bar" type="text"
+                                placeholder="Images, #tags, @users oh my!" />
+                            <i onclick="finddata()" style="margin-left: -30px;" class="fa fa-search"></i>
+                            <div id="search-results"></div>
+                        </div>
+                    </div>
+
+                    <!--  -->
+                    <div class="navChild last">
+                        <div><i class="fa fa-certificate"></i></div>
+                        <div><button class="go-free">Go Ad-free</button></div>
+                        <div><button class="sign-in">Sign In</button></div>
+                        <div><button class="upload sign-up">Sign Up</button></div>
+                    </div>
+                </div>
+            </nav>
+
+            <div>
+                <div class="sub-heading">
+                    <h4>Wondrous: inspiring a feeling of wonder or delight; just like Imgur.</h4>
+                </div>
+            </div>
+
+
+            <div class="tiles">
+                <div class="tile-header">
+                    <div>Explore Tags</div>
+                    <div>More Tags +</div>
+                </div>
+
+                <div class="tiles-main">
+                    <div class="tile tile-one">
+                        <div class="box">
+                            <div class="color-box two">Storytime</div>
+                        </div>
+                    </div>
+
+                    <div class="tile">
+                        <div class="box">
+                            <div class="color-box one">Mental</div>
+                        </div>
+                    </div>
+                    <div class="tile">
+                        <div class="box">
+                            <div class="color-box three">Football</div>
+                        </div>
+                    </div>
+                    <div class="tile">
+                        <div class="box">
+                            <div class="color-box two">Santa</div>
+                        </div>
+                    </div>
+
+                    <div class="tile">
+                        <div class="box">
+                            <div class="color-box one">Irvin</div>
+                        </div>
+                    </div>
+
+
+                    <div class="tile">
+                        <div class="box">
+                            <div class="color-box two">Inspiring</div>
+                        </div>
+                    </div>
+
+
+                    <div class="tile">
+                        <div class="box">
+                            <div class="color-box three">Family</div>
+                        </div>
+                    </div>
+
+                    <div class="tile">
+                        <div class="box">
+                            <div class="color-box one">Cat</div>
+                        </div>
+                    </div>
+
+                    <div class="tile">
+                        <div class="box">
+                            <div class="color-box two">Food</div>
+                        </div>
+                    </div>
+
+                    <div class="tile">
+                        <div class="box">
+                            <div class="color-box three">Cute</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="second-half">
+            <div class="tile-header">
+                <div>Most Viral</div>
+                <div>Newest</div>
+            </div>
+
+            <div id="main-gifs" class="gif-grid-outer">
+
+            </div>
+        </div>
+    </body>
+
+</html>
+
+
+<script src="imgurScript.js"></script>

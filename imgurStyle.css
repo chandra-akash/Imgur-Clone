@@ -1,0 +1,191 @@
+body{
+    background-color: #2e3035;
+    box-sizing: border-box;
+    padding:0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+}
+
+input{
+    color: white;
+    padding:0 10px;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.navChild{
+    display: inline-flex;
+    padding-top: 10px;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+}
+.navChild> div{
+    margin:10px;
+}
+.navChild input{
+    width: 500px;
+    height: 30px;
+    background-color: #454469;
+    font-size: medium;
+    border-radius: 5px;
+    border:none;
+}
+#search-results{
+    max-height:500px;
+    overflow-y: scroll;
+    background-color: #171544;
+    z-index: 2;
+    float: left;
+    position:absolute;
+    z-index: 50;
+    width: 500px;
+}
+.upload{
+    background-color: #1BB76E;
+    width:100px;
+    height: 30px;
+    border-radius:5px;
+    display: flex;
+    margin-top:5px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding:0 5px;
+    color: white;
+    text-decoration: none;
+    font-size: small;
+}
+.sign-up{
+    margin-top: 0;
+    text-align: center;
+    padding:0 20px;
+    border-radius:5px;
+}
+.sign-in{
+    height: 30px;
+    border-radius:5px;
+    background-color: transparent;
+    color: white;
+}
+button{
+    border: none;
+}
+.last div{
+    padding:4px;
+}
+.imgurLogo img{
+    width:100px;
+    height: 40px;
+}
+.firsthalf{
+    background-color: #171544;
+    padding-bottom: 120px;
+}
+.go-free{
+    background-color: #6432F9;
+    height: 30px;
+    color: #fff;
+    border-radius:5px;
+}
+
+.sub-heading{
+    color: white;
+    display: inline-block !important;
+    margin: auto !important;
+    margin-left: 27% !important;
+}
+.tiles{
+    width: 80%;
+    margin:auto
+}
+.tile-header{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    color: white;
+}
+
+.tiles-main{
+    display: flex;
+    justify-content: space-between;
+}
+.tile{
+    width:8%;
+    height: 120px;
+    background-image: url("https://images.template.net/wp-content/uploads/2017/03/Abstract-Design.jpg?width=480");
+    display: flex;
+    flex-flow: column-reverse;
+}
+.tile:hover{
+    transform: translateY(-2px);
+}
+.color-box{
+    height: 25px;
+    color: white;
+    text-align: center;
+    padding:15px 0px;
+}
+.one{
+    background-color: #1E5F43;
+}
+.two{
+    background-color: #AA33E6;
+}
+.three{
+    background-color: #3BA3B1;
+}
+.tile-one{
+    width: 16%;
+    background-image: url("https://images.template.net/wp-content/uploads/2017/03/13101949/Pattern-.jpg?width=450");
+    object-fit: contain;
+}
+input:focus{
+    outline: none;
+}
+.second-half{
+    max-width: 75%;
+    margin: auto;
+    margin-top: -75px;
+}
+
+#main-gifs{
+    /* display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 100%; */
+
+    column-count: 4;
+    column-gap: 10px;
+}
+
+.gif-obj{
+    position: relative;
+    background-color: #474a51;
+}
+.gif-obj:hover{
+    background-color: #fff;
+    opacity: .5;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 40%);
+}
+.gif-obj img{
+    width: 100%;
+    object-fit: cover;
+}
+.gif-obj h4{
+    font-weight: 400;
+}
+.gif-obj .gif-text{
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    align-items: center;
+    color: #fff;
+}
+@media screen and (max-width:1440px) {
+    body {
+        width: fit-content;
+    }
+}
