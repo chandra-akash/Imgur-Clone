@@ -19,8 +19,15 @@ window.addEventListener('scroll', () =>
     }
 });
 
-async function test (data, append = false)
+// async function gallery (d, append = false)
+const gallery = async () =>
 {
+    const { data } = await gify();
+    console.log('galleryData: ' + data);
+    // let d = data.data;
+    // let qv = await d.stringify();
+    // console.log('qv: ' + qv);
+    // console.log('galleryD: ' + d);
     const main = document.getElementById("main-gifs");
     if (!append) main.innerHTML = "";
     data.map((e) =>
@@ -48,14 +55,34 @@ async function test (data, append = false)
 }
 
 
-async function random ()
+// async function gify ()
+const gify = async () =>
 {
-    let response = await fetch(`https://g.tenor.com/v1/trending?key=${ key }&limit=24`);
+    // let response = await fetch(`https://g.tenor.com/v1/trending?key=${ key }&limit=24`);
+    // let { results: data } = await response.json();
+    // console.log('data:', data);
+    // gallery(data);
 
-    let { results: data } = await response.json();
-    console.log('data:', data);
-
-    test(data);
+    var header = new Headers();
+    header.append("Authorization", "Client-ID c5db48e94e74f4f");
+    try
+    {
+        let response = await fetch(
+            "https://api.imgur.com/3/gallery/hot/viral/day/1?showViral=true",
+            {
+                method: "GET",
+                headers: header,
+                redirect: "follow",
+            }
+        );
+        let data = await response.json();
+        console.log('data:', data);
+        // gallery(data.data);
+        return data;
+    } catch (err)
+    {
+        console.log("err", err.message);
+    }
 }
 
 async function finddata (offset)
@@ -63,10 +90,10 @@ async function finddata (offset)
     let q = document.getElementById("search-bar").value;
     if (!q) return;
     if (q.length < 2) { return; }
-    let response = await fetch(`https://g.tenor.com/v1/search?q=${ q }&offset=${ 0 }&key=${ key }&limit=10`);
+    let response = await fetch(`https://g.tenor.com/v1/search?q=${ q }&offset=${ 0 }&key=${ key }&limit=25`);
     let { results: data } = await response.json();
     console.log('data:', data);
-    test(data);
+    gallery(data);
 }
 
 async function appendData (offset)
@@ -74,10 +101,10 @@ async function appendData (offset)
     let q = document.getElementById("search-bar").value;
     if (!q) return;
     if (q.length < 2) { return; }
-    let response = await fetch(`https://g.tenor.com/v1/search?q=${ q }&offset=${ offset }&key=${ key }&limit=10`);
+    let response = await fetch(`https://g.tenor.com/v1/search?q=${ q }&offset=${ offset }&key=${ key }&limit=25`);
     let { results: data } = await response.json();
     console.log('data:', data);
-    test(data, true);
+    gallery(data, true);
 }
 
 let timer;
@@ -113,10 +140,10 @@ async function searchResult (q)
     let { results: data } = await response.json();
 
     console.log("data :", data);
-    // test(data);
+    // gallery(data);
 
-    const outerdiv = document.getElementById("search-results");
-    outerdiv.innerHTML = "";
+    const firsthalfResult = document.getElementById("search-results");
+    firsthalfResult.innerHTML = "";
     data.map((e) =>
     {
         const div = document.createElement("div");
@@ -128,8 +155,10 @@ async function searchResult (q)
             const searchdiv = document.getElementById("search-results");
             searchdiv.innerHTML = "";
         });
-        outerdiv.append(div);
+        firsthalfResult.append(div);
     });
 }
 
-random();
+gallery();
+
+// gify()
