@@ -18,24 +18,76 @@ window.addEventListener('scroll', () =>
         appendData(offset);
     }
 });
-
-// async function gallery (d, append = false)
-const gallery = async () =>
+/*
+async function gallery ()
 {
-    const { data } = await gify();
-    console.log('galleryData: ' + data);
+    // const { data } = await gify();
+    var apiResult;
+    var header = new Headers();
+    header.append("Authorization", "Client-ID c5db48e94e74f4f");
+    try
+    {
+        let response = await fetch(
+            "https://api.imgur.com/3/gallery/hot/viral/day/1?showViral=true",
+            {
+                method: "GET",
+                headers: header,
+                redirect: "follow",
+            }
+        );
+        let data = await response.json();
+        console.log('39 data:', data);
+
+        // for (const i of data.data) {
+        //     console.log('i: ', i);
+        // }
+
+        data.data.map((e) =>
+        {
+            console.log('e:', e);
+    
+            const fstDiv = document.createElement("div");
+            fstDiv.setAttribute("class", "gif-obj");
+    
+            const image = document.createElement("img");
+            image.src = e.media[ 0 ].gif.url;
+            console.log('url:', e.media[ 0 ].gif.url);
+    
+            const gifText = document.createElement("div");
+            gifText.setAttribute("class", "gif-text");
+            const p = document.createElement("p");
+            p.textContent = e.content_description;
+    
+            gifText.append(p);
+            fstDiv.append(image, gifText);
+    
+            main.append(fstDiv);
+        });
+        main.style.display = "block";
+        // gallery(data.data);
+        // return data;
+        apiResult = data.data;
+        console.log('galleryData: ' + apiResult);
+    } catch (err)
+    {
+        console.log("err", err.message);
+    }
+
     // let d = data.data;
     // let qv = await d.stringify();
     // console.log('qv: ' + qv);
     // console.log('galleryD: ' + d);
     const main = document.getElementById("main-gifs");
-    if (!append) main.innerHTML = "";
-    data.map((e) =>
+    // if (!append) main.innerHTML = "";
+
+    console.log('apiResult: ' + apiResult);
+
+    apiResult.map((e) =>
     {
         console.log('e:', e);
 
-        const outer = document.createElement("div");
-        outer.setAttribute("class", "gif-obj");
+        const fstDiv = document.createElement("div");
+        fstDiv.setAttribute("class", "gif-obj");
 
         const image = document.createElement("img");
         image.src = e.media[ 0 ].gif.url;
@@ -47,16 +99,15 @@ const gallery = async () =>
         p.textContent = e.content_description;
 
         gifText.append(p);
-        outer.append(image, gifText);
+        fstDiv.append(image, gifText);
 
-        main.append(outer);
+        main.append(fstDiv);
     });
     main.style.display = "block";
 }
+*/
 
-
-// async function gify ()
-const gify = async () =>
+async function gify ()
 {
     // let response = await fetch(`https://g.tenor.com/v1/trending?key=${ key }&limit=24`);
     // let { results: data } = await response.json();
@@ -83,6 +134,40 @@ const gify = async () =>
     {
         console.log("err", err.message);
     }
+}
+
+function  gifappend(link){
+    const main = document.getElementById("main-gifs");
+
+    const fstDiv = document.createElement("div");
+        fstDiv.setAttribute("class", "gif-obj");
+
+        const image = document.createElement("img");
+        image.src = `${link}`;
+
+        const gifText = document.createElement("div");
+        gifText.setAttribute("class", "gif-text");
+        const p = document.createElement("p");
+        p.textContent = 'gif';
+
+        gifText.append(p);
+        fstDiv.append(image, gifText);
+
+    main.append(fstDiv);
+    
+    main.style.display = "block";
+}
+
+async function gallery ()
+{
+    const { data } = await gify();
+    console.log('164 data: ', data);
+
+    data.map(({ images }) => {
+        images.map(({ link }) => {
+          gifappend(link);
+        });
+      });
 }
 
 async function finddata (offset)
