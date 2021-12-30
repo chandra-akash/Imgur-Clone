@@ -10,9 +10,18 @@ input {
   color: white;
   padding: 0 10px;
 }
+nav {
+  position: fixed;
+  display: contents;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
+  min-height: 70px;
+  z-index: 10;
+  background-color: #171544;
+  width: -webkit-fill-available;
+  position: fixed;
 }
 
 .navChild {
@@ -41,7 +50,8 @@ input {
   float: left;
   position: absolute;
   z-index: 50;
-  width: 500px;
+  width: 510px;
+  padding: 5px;
 }
 .upload {
   background-color: #1bb76e;
@@ -96,6 +106,7 @@ button {
   display: inline-block !important;
   margin: auto !important;
   margin-left: 27% !important;
+  padding-top: 70px;
 }
 .tiles {
   width: 80%;
@@ -172,6 +183,7 @@ input:focus {
 }
 .gif-obj img {
   width: 100%;
+  min-height: 100px;
   object-fit: cover;
 }
 .gif-obj h4 {
@@ -184,7 +196,7 @@ input:focus {
   align-items: center;
   color: #fff;
 }
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1024px) {
   body {
     width: fit-content;
   }

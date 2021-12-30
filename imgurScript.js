@@ -1,91 +1,31 @@
 const key = "AD8OM2MUXKQ4";
-let offset = -1;
+// let offset = -1;
 
-window.addEventListener('scroll', () =>
+// window.addEventListener('scroll', () =>
+// {
+//     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+//     offset++;
+//     console.log({ scrollTop, scrollHeight, clientHeight });
+//     if (clientHeight + scrollTop >= scrollHeight - 10)
+//     {
+//         const data = document.getElementById("search-bar").value;
+//         if (data.length <= 2)
+//         {
+//             const div = document.getElementById("main-gif");
+//             div.innerHTML = "";
+//             return;
+//         }
+//         appendData(offset);
+//     }
+// });
+
+
+async function gallery (data, append = false)
 {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    offset++;
-    console.log({ scrollTop, scrollHeight, clientHeight });
-    if (clientHeight + scrollTop >= scrollHeight - 10)
-    {
-        const data = document.getElementById("search-bar").value;
-        if (data.length <= 2)
-        {
-            const div = document.getElementById("main-gif");
-            div.innerHTML = "";
-            return;
-        }
-        appendData(offset);
-    }
-});
-/*
-async function gallery ()
-{
-    // const { data } = await gify();
-    var apiResult;
-    var header = new Headers();
-    header.append("Authorization", "Client-ID c5db48e94e74f4f");
-    try
-    {
-        let response = await fetch(
-            "https://api.imgur.com/3/gallery/hot/viral/day/1?showViral=true",
-            {
-                method: "GET",
-                headers: header,
-                redirect: "follow",
-            }
-        );
-        let data = await response.json();
-        console.log('39 data:', data);
-
-        // for (const i of data.data) {
-        //     console.log('i: ', i);
-        // }
-
-        data.data.map((e) =>
-        {
-            console.log('e:', e);
-    
-            const fstDiv = document.createElement("div");
-            fstDiv.setAttribute("class", "gif-obj");
-    
-            const image = document.createElement("img");
-            image.src = e.media[ 0 ].gif.url;
-            console.log('url:', e.media[ 0 ].gif.url);
-    
-            const gifText = document.createElement("div");
-            gifText.setAttribute("class", "gif-text");
-            const p = document.createElement("p");
-            p.textContent = e.content_description;
-    
-            gifText.append(p);
-            fstDiv.append(image, gifText);
-    
-            main.append(fstDiv);
-        });
-        main.style.display = "block";
-        // gallery(data.data);
-        // return data;
-        apiResult = data.data;
-        console.log('galleryData: ' + apiResult);
-    } catch (err)
-    {
-        console.log("err", err.message);
-    }
-
-    // let d = data.data;
-    // let qv = await d.stringify();
-    // console.log('qv: ' + qv);
-    // console.log('galleryD: ' + d);
     const main = document.getElementById("main-gifs");
-    // if (!append) main.innerHTML = "";
-
-    console.log('apiResult: ' + apiResult);
-
-    apiResult.map((e) =>
+    if (!append) main.innerHTML = "";
+    data.map((e) =>
     {
-        console.log('e:', e);
-
         const fstDiv = document.createElement("div");
         fstDiv.setAttribute("class", "gif-obj");
 
@@ -105,79 +45,15 @@ async function gallery ()
     });
     main.style.display = "block";
 }
-*/
+
 
 async function gify ()
 {
-    // let response = await fetch(`https://g.tenor.com/v1/trending?key=${ key }&limit=24`);
-    // let { results: data } = await response.json();
-    // console.log('data:', data);
-    // gallery(data);
+    let response = await fetch(`https://g.tenor.com/v1/trending?key=${ key }&limit=24`);
 
-    var header = new Headers();
-    header.append("Authorization", "Client-ID c5db48e94e74f4f");
-    try
-    {
-        let response = await fetch(
-            "https://api.imgur.com/3/gallery/hot/viral/day/1?showViral=true",
-            {
-                method: "GET",
-                headers: header,
-                redirect: "follow",
-            }
-        );
-        let data = await response.json();
-        console.log('data:', data);
-        // gallery(data.data);
-        return data;
-    } catch (err)
-    {
-        console.log("err", err.message);
-    }
-}
-
-function  gifappend(link){
-    const main = document.getElementById("main-gifs");
-
-    const fstDiv = document.createElement("div");
-        fstDiv.setAttribute("class", "gif-obj");
-
-        const image = document.createElement("img");
-        image.src = `${link}`;
-
-        const gifText = document.createElement("div");
-        gifText.setAttribute("class", "gif-text");
-        const p = document.createElement("p");
-        p.textContent = 'gif';
-
-        gifText.append(p);
-        fstDiv.append(image, gifText);
-
-    main.append(fstDiv);
-    
-    main.style.display = "block";
-}
-
-async function gallery ()
-{
-    const { data } = await gify();
-    console.log('164 data: ', data);
-
-    data.map(({ images }) => {
-        images.map(({ link }) => {
-          gifappend(link);
-        });
-      });
-}
-
-async function finddata (offset)
-{
-    let q = document.getElementById("search-bar").value;
-    if (!q) return;
-    if (q.length < 2) { return; }
-    let response = await fetch(`https://g.tenor.com/v1/search?q=${ q }&offset=${ 0 }&key=${ key }&limit=25`);
     let { results: data } = await response.json();
     console.log('data:', data);
+
     gallery(data);
 }
 
@@ -244,6 +120,77 @@ async function searchResult (q)
     });
 }
 
-gallery();
+/*
+async function gify ()
+{
+    var header = new Headers();
+    header.append("Authorization", "Client-ID c5db48e94e74f4f");
+    try
+    {
+        let response = await fetch(
+            "https://api.imgur.com/3/gallery/hot/viral/day/1?showViral=true",
+            {
+                method: "GET",
+                headers: header,
+                redirect: "follow",
+            }
+        );
+        let data = await response.json();
+        console.log('data:', data);
+        // gallery(data.data);
+        return data;
+    } catch (err)
+    {
+        console.log("err", err.message);
+    }
+}
 
+function gifappend (link)
+{
+    console.log('257 link: ', link);
+    let main = document.getElementById("main-gifs");
+
+    let fstDiv = document.createElement("div");
+        fstDiv.setAttribute("class", "gif-obj");
+
+        let image = document.createElement("img");
+    image.src = `${ link }`;
+    image.alt = "imgur";
+
+        let gifText = document.createElement("div");
+        gifText.setAttribute("class", "gif-text");
+        let p = document.createElement("p");
+        p.textContent = 'gif';
+
+        gifText.append(p);
+        fstDiv.append(image, gifText);
+
+    main.append(fstDiv);
+    
+    main.style.display = "block";
+}
+
+async function gallery ()
+{
+    let { data } = await gify();
+    console.log('281 data: ', data);
+
+    data.map(({ images }) =>
+    {
+        if (images) {
+            console.log('286: images: ', images[0].link);
+            
+            let image = document.createElement("img");
+            image.src = images[0].link;
+            
+            gifappend(images[ 0 ].link); 
+            
+        }
+      });
+}
+
+
+gallery();
+*/
 // gify()
+gify();
